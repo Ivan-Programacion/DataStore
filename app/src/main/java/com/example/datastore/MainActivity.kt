@@ -58,7 +58,7 @@ fun UserNameScrean(paddingValues: PaddingValues, viewModel: UserViewModel) {
     // 1. apuntamos a viewModel
     // 2. llamamos a getData
     // 3. Parámetros necesarios: contexto y Preferences.Key correspondiente
-    // 4. collextAsState para guardarlo como estado
+    // 4. collectAsState para guardarlo como estado
     val userName = viewModel.getData(
         context,
         stringPreferencesKey("userName")
@@ -75,6 +75,7 @@ fun UserNameScrean(paddingValues: PaddingValues, viewModel: UserViewModel) {
             fieldText,
             { fieldText = it })
         Button({
+            // Lanzas el hilo para realizar el set de forma asincrona (hilo)
             coroutineCtx.launch {
                 viewModel.setData(
                     context,
